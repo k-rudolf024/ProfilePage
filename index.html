@@ -2,111 +2,75 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>RN Portfolio</title>
+  <title>クリックゲーム</title>
   <style>
     body {
-      margin: 0;
-      height: 100vh;
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .container {
       text-align: center;
-      transform: translateY(20px);
-      opacity: 0;
-      animation: fadeUp 1.2s ease forwards;
+      font-family: sans-serif;
     }
-
-    .icon {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid orange;
-      object-fit: cover;
-    }
-
-    h1 {
-      margin-top: 20px;
-      font-size: 24px;
-      letter-spacing: 2px;
-      animation: fadeUp 1.2s ease forwards;
-      animation-delay: 0.2s;
-      opacity: 0;
-    }
-
-    .bio {
-      margin-top: 15px;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #ccc;
-      animation: fadeUp 1.2s ease forwards;
-      animation-delay: 0.3s;
-      opacity: 0;
-    }
-
-    .links {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      animation: fadeUp 1.2s ease forwards;
-      animation-delay: 0.5s;
-      opacity: 0;
-    }
-
-    .links a {
-      color: orange;
-      text-decoration: none;
-      font-size: 18px;
-      padding: 10px 20px;
-      border: 2px solid orange;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-
-    .links a:hover {
-      background-color: orange;
-      color: #000;
-      transform: scale(1.1);
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    button {
+      font-size: 20px;
+      padding: 15px;
+      margin: 10px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <img src="icon.png" alt="icon" class="icon">
+  <h1>クリックゲーム</h1>
+  <p>スコア: <span id="score">0</span></p>
+  <p>残り時間: <span id="time">10</span>秒</p>
 
-    <h1>RN</h1>
+  <button id="clickBtn">クリック！</button><br>
+  <button id="resetBtn">リセット</button>
 
-    <!-- 自己紹介 -->
-    <p class="bio">
-      Web制作を勉強中。<br>
-      シンプルでかっこいいデザインが好き。<br>
-      ゲームやUIを作っています。
-    </p>
+  <script>
+    let score = 0;
+    let time = 10;
+    let gameActive = false;
+    let timer = null;
 
-    <div class="links">
-      <a href="https://twitter.com/your_account" target="_blank">X</a>
-      <a href="https://youtube.com/@your_channel" target="_blank">YouTube</a>
-    </div>
-  </div>
+    const scoreDisplay = document.getElementById("score");
+    const timeDisplay = document.getElementById("time");
+    const clickBtn = document.getElementById("clickBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    function startTimer() {
+      timer = setInterval(() => {
+        time--;
+        timeDisplay.textContent = time;
+
+        if (time <= 0) {
+          clearInterval(timer);
+          gameActive = false;
+          alert("ゲーム終了！スコア: " + score);
+        }
+      }, 1000);
+    }
+
+    clickBtn.addEventListener("click", () => {
+      // 初回クリックでゲーム開始
+      if (!gameActive && time === 10) {
+        gameActive = true;
+        startTimer();
+      }
+
+      if (gameActive) {
+        score++;
+        scoreDisplay.textContent = score;
+      }
+    });
+
+    resetBtn.addEventListener("click", () => {
+      clearInterval(timer);
+      score = 0;
+      time = 10;
+      gameActive = false;
+
+      scoreDisplay.textContent = score;
+      timeDisplay.textContent = time;
+    });
+  </script>
 
 </body>
 </html>
