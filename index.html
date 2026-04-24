@@ -3,12 +3,151 @@
 <head>
   <meta charset="UTF-8">
   <title>カルド ProfilePage</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --accent: #ff8c00;
+      --text-main: #ffffff;
+      --text-sub: #bbbbbb;
+      --bg: #000000;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      text-align: center;
+      padding: 60px 20px;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      object-fit: cover;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 24px;
+      letter-spacing: 2px;
+      position: relative;
+    }
+
+    h1::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -6px;
+      width: 100%;
+      height: 4px;
+      background-color: var(--accent);
+      opacity: 0.7;
+      border-radius: 3px;
+    }
+    
+    .bio {
+      margin-top: 15px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-sub);
+    }
+
+    .links {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 20px;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .links a:hover {
+      background-color: var(--accent);
+      color: #000;
+      transform: scale(1.1);
+      box-shadow: 0 0 15px var(--accent);
+    }
+
+    .works {
+      margin-top: 60px;
+    }
+
+    .works h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .work-card {
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: 0.3s;
+      display: block;
+    }
+
+    .work-card:hover {
+      background-color: var(--accent);
+      color: #000;
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    .work-title {
+      font-size: 16px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .work-desc {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+
+    .work-card:hover .work-desc {
+      color: #222;
+    }
+
+    @media (max-width: 600px) {
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<body class="home">
+<body>
 
-  <div class="container home-center">
-
+  <div class="container">
     <img src="icon.png" alt="icon" class="icon">
 
     <h1>カルド</h1>
@@ -24,11 +163,30 @@
       <a href="https://www.youtube.com/@k_rudolf" target="_blank">YouTube</a>
     </div>
 
-    <!-- ▼ジャンル導線（控えめに） -->
-    <div class="links" style="margin-top:25px;">
-      <a href="utau.html">UTAU</a>
-      <a href="illust.html">Illust</a>
-      <a href="game.html">Game</a>
+    <div class="works">
+      <h2>Works</h2>
+
+      <div class="work-grid">
+        <a href="#" class="work-card">
+          <div class="work-title">UTAUカバー①</div>
+          <div class="work-desc">獣人ボイスでのカバー作品</div>
+        </a>
+
+        <a href="#" class="work-card">
+          <div class="work-title">UTAUカバー②</div>
+          <div class="work-desc">感情強めに仕上げた作品</div>
+        </a>
+
+        <a href="#" class="work-card">
+          <div class="work-title">イラスト</div>
+          <div class="work-desc">キャラデザインの練習</div>
+        </a>
+
+        <a href="#" class="work-card">
+          <div class="work-title">ゲーム試作</div>
+          <div class="work-desc">制作途中のミニゲーム</div>
+        </a>
+      </div>
     </div>
 
   </div>
