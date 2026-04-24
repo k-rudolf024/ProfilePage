@@ -2,7 +2,9 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ゲーム</title>
+
 <style>
 :root {
   --accent: #ff8c00;
@@ -16,51 +18,163 @@ body {
   color: var(--text);
   font-family: Arial;
   margin: 0;
-  padding: 40px 20px;
+  padding: 20px;
 }
 
-a { color: var(--accent); }
+.header {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text);
+  z-index: 1000;
+}
+
+.header img {
+  width: 30px;
+  height: 30px;
+}
+
+.header span {
+  font-size: 14px;
+}
+
+h1 {
+  margin-top: 60px;
+  font-size: 24px;
+  letter-spacing: 2px;
+  position: relative;
+  text-align: center;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -8px;
+  width: 120%;
+  height: 5px;
+  background-color: var(--accent);
+  border-radius: 3px;
+}
 
 .card {
-  border: 2px solid var(--accent);
-  border-radius: 10px;
-  padding: 20px;
-  margin-top: 20px;
+  margin-top: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.card:hover {
-  background: var(--accent);
-  color: #000;
+.thumb {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid var(--accent);
+}
+
+.static {
+  width: 100%;
+  display: block;
+}
+
+.slides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%;
+  display: flex;
+  opacity: 0;
+}
+
+.slides img {
+  width: 100%;
+}
+
+.thumb:hover .slides {
+  opacity: 1;
+  animation: slide 3s infinite;
+}
+
+@keyframes slide {
+  0%   { transform: translateX(0%); }
+  33%  { transform: translateX(-100%); }
+  66%  { transform: translateX(-200%); }
+  100% { transform: translateX(0%); }
 }
 
 .title {
+  font-size: 18px;
+  margin-top: 10px;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .desc {
   color: var(--sub);
+  margin-top: 5px;
+  font-size: 14px;
 }
 
-.card:hover .desc {
-  color: #222;
+@media(max-width:600px){
+
+  .header img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .header span {
+    font-size: 16px;
+  }
+
+  h1::after {
+    width: 100%;
+    height: 6px;
+  }
+
+  .slides {
+    opacity: 1;
+    animation: slide 4s infinite;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<a href="index.html">← Back</a>
+<a href="index.html" class="header">
+  <img src="icon.png" alt="logo">
+  <span>カルド</span>
+</a>
+
 <h1>ゲーム</h1>
 
 <div class="card">
-  <div class="title">ミニゲーム①</div>
-  <div class="desc">制作途中の試作ゲーム</div>
+  <div class="thumb">
+    <img src="game1_1.png" class="static">
+    <div class="slides">
+      <img src="game1_1.png">
+      <img src="game1_2.png">
+      <img src="game1_3.png">
+    </div>
+  </div>
+  <div class="title">クリックゲーム</div>
+  <div class="desc">連打力を測定できます</div>
 </div>
 
 <div class="card">
-  <div class="title">アクション試作</div>
-  <div class="desc">Unityで開発中</div>
+  <div class="thumb">
+    <img src="game2_1.png" class="static">
+    <div class="slides">
+      <img src="game2_1.png">
+      <img src="game2_2.png">
+      <img src="game2_3.png">
+    </div>
+  </div>
+  <div class="title">アクション2D</div>
+  <div class="desc">Siv3Dで開発中</div>
 </div>
 
 </body>
