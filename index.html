@@ -1,8 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>カルド ProfilePage</title>
+
   <style>
     :root {
       --accent: #ff8c00;
@@ -138,13 +141,41 @@
       color: #222;
     }
 
+    /* ===== スマホ対応 ===== */
     @media (max-width: 600px) {
+      .container {
+        padding: 40px 15px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      .bio {
+        font-size: 13px;
+      }
+
+      .links {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .links a {
+        width: 100%;
+        text-align: center;
+      }
+
       .work-grid {
         grid-template-columns: 1fr;
+      }
+
+      .work-card {
+        padding: 16px;
       }
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
@@ -188,3 +219,4 @@
 
 </body>
 </html>
+```
