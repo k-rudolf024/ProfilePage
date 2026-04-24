@@ -106,14 +106,27 @@
     }
 
     .works h2 {
+      position: relative;
+      display: inline-block;
       margin-bottom: 20px;
       font-size: 20px;
-      border-bottom: 2px solid var(--accent);
-      display: inline-block;
-      padding-bottom: 5px;
+      padding-bottom: 8px;
+    
       animation: fadeUp 0.6s ease forwards;
       animation-delay: 0.8s;
       opacity: 0;
+    }
+    
+    .works h2::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      width: 100%;      /* 長さ */
+      height: 4px;      /* 太さ（ここで調整） */
+      background-color: var(--accent);
+      border-radius: 3px;
     }
 
     .work-grid {
